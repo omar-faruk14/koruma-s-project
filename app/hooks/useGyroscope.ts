@@ -141,11 +141,12 @@ export function useGyroscope() {
           setIsActive(true);
         };
 
-        window.addEventListener('deviceorientation', handleOrientation);
+        const win = window as Window & typeof globalThis;
+        win.addEventListener('deviceorientation', handleOrientation);
         setIsActive(true);
 
         return () => {
-          window.removeEventListener('deviceorientation', handleOrientation);
+          win.removeEventListener('deviceorientation', handleOrientation);
         };
       }
     } catch (error: any) {
